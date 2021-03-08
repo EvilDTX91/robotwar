@@ -1,0 +1,49 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+    <body> 
+        <div class="robot_table">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col">Név</th>
+                      <th scope="col">Típus</th>
+                      <th scope="col">Erő</th>
+                      <th scope="col">Létrehozva</th>
+                      <th scope="col">Szerkesztés</th>
+                      <th scope="col">Törlés</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key,value in array_path %}
+                        Key : {{ key }}
+                        Value : {{ value }}
+                    {% endfor %}
+                    {% for robot in robotlist %}
+                        <tr>
+                            <td>
+                                {{ robot.nev }}
+                            </td>
+                            <td>
+                                {{ robot.tipus }}
+                            </td>
+                            <td>
+                                {{ robot.ero }}
+                            </td>   
+                            <td>
+                                {{ robot.letrehozva }}
+                            </td> 
+                            <td>
+                                <button type="button" class="btn btn-info" onclick="robotMod({{ robot.azonosito }})">Módosítás</button>
+                            </td> 
+                            <td>
+                                <button type="button" class="btn btn-warning" onclick="robotDel({{ robot.azonosito }})">Törlés</button>
+                            </td>                    
+                        </tr>
+                    {% endfor %}
+                </tbody>        
+            </table>
+            <button type="button" class="btn btn-success" onclick="addRobot()">Új robot</button>
+        </div>
+    </body>
+{% endblock %}

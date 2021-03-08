@@ -1,0 +1,11 @@
+{
+    "require": {
+        "twbs/bootstrap": "5.0.0-beta2",
+        "twig/twig": "^3.3"
+    },
+    "autoload": {
+      "psr-4": {
+        "robotwar\\": "classes/"
+      }
+    }
+}

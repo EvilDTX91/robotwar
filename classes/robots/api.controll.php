@@ -1,5 +1,8 @@
 <?php
-namespace robotwar\robots;
+namespace robotwar\Robots;
+
+include("{$_SERVER['DOCUMENT_ROOT']}/Classes/Robots/robots.php");
+use robotwar\Settings\Connection;
 
 if(isset($_POST['action'])){
     if($_POST['action'] == 'robotlist'){
@@ -18,10 +21,11 @@ if(isset($_POST['action'])){
         }else{
             $res = array(
                     'response' => 0,
-                    'message' => 'Hiba! A törlés sikertelen!'
+                    'message' => 'Hiba! A törlés sikertelen!',
+                    'id' => $_POST['azonosito']
                 ); 
         }        
         
-        return json_encode($res);       
+        echo json_encode($res);       
     }    
 }

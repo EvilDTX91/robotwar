@@ -1,8 +1,9 @@
 <?php
 
-namespace robotwar\robots;
+namespace robotwar\Robots;
 
-use robotwar\settings\Connection;
+include("{$_SERVER['DOCUMENT_ROOT']}/Classes/Settings/connection.php");
+use robotwar\Settings\Connection;
 
 class Robots{
     private $connectionDriver;
@@ -92,7 +93,8 @@ class Robots{
     public function getRobotList(){
         $this->setConnectionDriver(new Connection);
         $sql_sel = "SELECT *
-                        FROM robots";
+                        FROM robots
+                        WHERE statusz = 1";
         $result = $this->getConnectionDriver()->getConnection()->query($sql_sel);
         
         $res = $result->fetch_all(MYSQLI_ASSOC);
@@ -142,10 +144,15 @@ class Robots{
     public function deleteRobot(){
         if(!empty($this->azonosito)){           
             $this->setConnectionDriver(new Connection);            
-            $sql_upd = "UPDATE robots
+            $sql_del = "UPDATE robots
                             SET statusz = 0
                             WHERE azonosito = " . $this->azonosito;
-            $this->getConnectionDriver()->getConnection()->query($sql_ins);            
+                 
+            if($this->getConnectionDriver()->getConnection()->query($sql_del)){
+                return true;
+            }else{
+                return false;
+            }
         }        
     }
     

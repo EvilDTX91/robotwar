@@ -1,6 +1,6 @@
 <?php
 
-namespace robotwar\settings;
+namespace robotwar\Settings;
 
 use mysqli;
 

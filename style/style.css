@@ -11,3 +11,10 @@ body{
 .robotAddDiv{
     text-align: center;
 }
+
+
+.winner_robot_div{
+    width: 800px;
+    text-align: center;
+    background-color: #b3ffb3;
+}

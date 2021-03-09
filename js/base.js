@@ -71,18 +71,40 @@ function robotDel(id){
     }
 }
 
-function robotBattle($robot1, $robot2){
-    if($robot1 > 0 && $robot2 > 0){
+function robotBattle(){
+    var n = $( "input:checked" ).length;
+    if(n == 2){        
+        var checkedValue = $('#form-check:checked').val();
+        
+        var robots = [];
+        $(':checkbox:checked').each(function(i){
+          robots[i] = $(this).val();
+        });
+        
         $.ajax({
-            url: 'classes/robots/api.controll.php',
-            type: 'POST',
-            data: {
-                action: 'robot_battle',
-            },
-            success: function(data){
-                
-            }
+                url: 'classes/robots/api.controll.php',
+                type: 'POST',
+                data: {
+                    action: 'robot_battle',
+                    robots: robots,
+                },
+                success: function(data){
+                    var res = JSON.parse(data);
+                    if(res.response == 0){
+                        alert(res.message);                        
+                    }else{
+                        $('.winner_robot_div').removeClass('hidden');                        
+                        $('#winner_h4').text(res);
+                        alert("A győztes " + res.nev + "!");
+                    }
+                }
         })
+    }else{
+        if(n < 2){
+            alert("A harchoz két robot kijelölése szükséges!");
+        }else{
+            alert("A harcban két robot vehet részt!");            
+        }
     }
 }
 

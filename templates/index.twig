@@ -15,11 +15,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                <div class="winner_robot_div"><h4 id="winner_h4">asa<h4><div>
                     {% for robot in robotlist %}
                         <tr id="tr_{{ robot.azonosito }}" for="check_{{ robot.azonosito }}">
                             <td>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="check_{{ robot.azonosito }}">
+                                    <input class="form-check-input" type="checkbox" name="robotSelected[]" value="{{ robot.azonosito }}" id="check_{{ robot.azonosito }}">
                                     <label class="form-check-label" for="check_{{ robot.azonosito }}">
                                     </label>
                                  </div>                           

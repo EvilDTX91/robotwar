@@ -5,6 +5,7 @@ include("{$_SERVER['DOCUMENT_ROOT']}/Classes/Robots/robots.php");
 use robotwar\Settings\Connection;
 
 if(isset($_POST['action'])){
+    
     if($_POST['action'] == 'robotlist'){
         $robot = new Robots();
         $list = $robot ->getRobotList();
@@ -63,6 +64,22 @@ if(isset($_POST['action'])){
             $res = array(
                     'response' => 0,
                     'message' => 'Hiba! A módosítás sikertelen!'
+                );
+        }
+        echo json_encode($res); 
+    }
+    
+    if($_POST['action'] == 'robot_battle'){
+        $robot = new Robots();
+        $winner = $robot->fightRobots($_POST['robots'][0], $_POST['robots'][1]);
+        $robot->setAzonosito($winner);
+        $winner_data = $robot->getRobot();
+        if($winner_data){
+            $res = $winner_data;
+        }else{            
+            $res = array(
+                    'response' => 0,
+                    'message' => 'Hiba! A harc sikertelen!'
                 );
         }
         echo json_encode($res); 

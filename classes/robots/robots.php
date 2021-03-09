@@ -119,8 +119,13 @@ class Robots{
                             FROM robots
                             WHERE azonosito = " . $this->azonosito;
             $result = $this->getConnectionDriver()->getConnection()->query($sql_sel);
+            $res = $result->fetch_assoc();    
 
-            $res = $result->fetch_all(MYSQLI_ASSOC);
+            if($res){       
+                return $res;
+            }else{
+                return false;
+            }
         }        
     }
     
@@ -181,7 +186,7 @@ class Robots{
             $this->azonosito = $r1;
             $robot1 = $this->getRobot();
             $this->azonosito = $r2;
-            $robot1 = $this->getRobot();
+            $robot2 = $this->getRobot();
 
             if($robot1['ero'] > $robot2['ero']){
                 $winner = $robot1['azonosito'];

@@ -20,6 +20,7 @@ function addRobot(){
 
 function robotAddOpen(){  
     robotTypeList();
+    $('#recipient-name').val('');
     $('#saveModalButton').attr('onClick', 'addRobot();');
 }
 

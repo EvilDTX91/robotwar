@@ -4,7 +4,7 @@ body{
 
 .robot_table{
     width: 800px;
-    margin-top: 5%;
+    margin-top: 2%;
     margin-left: 25%;
     background-color: #e6ffff;
 }
@@ -12,9 +12,20 @@ body{
     text-align: center;
 }
 
-
 .winner_robot_div{
-    width: 800px;
+    width: 20%;
+    margin: 10px auto;
     text-align: center;
     background-color: #b3ffb3;
+    border-radius: 12px;
+}
+
+.winner_p{
+    margin: 10px;
+    text-align: left;
+    color: black;
+}
+
+.btn{
+    margin-left: 10px;
 }

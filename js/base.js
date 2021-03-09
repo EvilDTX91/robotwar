@@ -49,8 +49,7 @@ function robotModOpen(id){
     var type = $('#tipus_' + id).val();
     $('#recipient-name').val(name);
     $('#recipient-type').val(type);    
-    robotTypeList();
-    $('select option[value="'+type+'"]').attr("selected",true);    
+    robotTypeList(type);   
     $('#saveModalButton').attr('onClick', 'robotMod('+id+');');
 }
 
@@ -139,7 +138,7 @@ function robotGetStrongerDataApi($robot1, $robot2){
     }
 }
 
-function robotTypeList(){
+function robotTypeList(type){
     $.ajax({
         url: 'classes/robots/api.controll.php',
         type: 'POST',
@@ -152,6 +151,9 @@ function robotTypeList(){
                 option = document.createElement('option');
                 option.text = obj[i].tipus;
                 option.value = i+1;
+                if((i+1) == type){
+                    option.selected = true;
+                }
                 dropdown.add(option);
             } 
         }

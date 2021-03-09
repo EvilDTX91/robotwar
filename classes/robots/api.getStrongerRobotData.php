@@ -4,6 +4,8 @@ namespace robotwar\Robots;
 include("{$_SERVER['DOCUMENT_ROOT']}/Classes/Robots/robots.php");
 use robotwar\Settings\Connection;
 
+//API híváshoz
+//http://robotwar/classes/Robots/api.getStrongerRobotData.php?robot1=11&robot2=12
 if((isset($_GET['robot1']) && isset($_GET['robot2'])) || isset($_POST['robot1']) && isset($_POST['robot2'])){
     if($_GET['robot1'] > 0 && $_GET['robot2'] > 0){
         $robot1 = $_GET['robot1'];

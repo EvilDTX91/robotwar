@@ -1,5 +1,4 @@
 {% extends 'base.twig' %}
-
 {% block content %}
     <body> 
         <div class="robot_table">
@@ -27,10 +26,12 @@
                             </td>
                             <td>
                                 <label class="form-check-label" for="check_{{ robot.azonosito }}">
+                                    <input type="text" id="nev_{{ robot.azonosito }}" value="{{ robot.nev }}">
                                     {{ robot.nev }}
                                 </label>
                             </td>
                             <td>
+                                <input type="text" id="tipus_{{ robot.azonosito }}" value="{{ robot.tipus }}">
                                 {{ robot.tipus }}
                             </td>
                             <td>
@@ -40,7 +41,7 @@
                                 {{ robot.letrehozva }}
                             </td> 
                             <td>
-                                <button type="button" class="btn btn-info" onclick="robotMod({{ robot.azonosito }})">Módosítás</button>
+                                <button type="button" class="btn btn-info" onclick="robotModOpen({{ robot.azonosito }})" data-bs-toggle="modal" data-bs-target="#robotWarModal" data-bs-whatever="@getbootstrap">Módosítás</button>
                             </td> 
                             <td>
                                 <button type="button" class="btn btn-warning" onclick="robotDel({{ robot.azonosito }})">Törlés</button>
@@ -49,7 +50,12 @@
                     {% endfor %}
                 </tbody>        
             </table>
-            <button type="button" class="btn btn-success" onclick="addRobot()">Új robot</button>
-        </div>
+            <div class="robotAddDiv">
+                <button type="button" class="btn btn-success" onclick="robotAddOpen()" data-bs-toggle="modal" data-bs-target="#robotWarModal" data-bs-whatever="@getbootstrap">Új robot</button>
+            </div>
+            </div>  
+        {% block model %}
+            {% include 'modules/modal.twig' %}
+        {% endblock %}
     </body>
 {% endblock %}

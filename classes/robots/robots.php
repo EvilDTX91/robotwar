@@ -12,15 +12,15 @@ class Robots{
     private $tipus;
     private $ero;    
     private $robot_types = array(
-         '0' => 'Brawler',
-         '1' => 'Rouge',
-         '2' => 'Assault',
+         1 => 'Brawler',
+         2 => 'Rouge',
+         3 => 'Assault',
     );
 
     private $robot_power = array(
-         '0' => '1',
-         '1' => '2',
-         '2' => '3',
+         1 => 1,
+         2 => 2,
+         3 => 3,
     );    
     
     function getAzonosito() {
@@ -81,9 +81,10 @@ class Robots{
         }        
     }
     
-    public function getRobotPower($robot_types){
+    public function getRobotTipusEro($robot_types){
         if(!empty($robot_types)){    
-            return $robot_power[$robot_types];
+            $this->ero = $this->robot_power[$robot_types];
+            return $this->ero;
         }else{
             return false;
         }        
@@ -128,13 +129,13 @@ class Robots{
 
             $sql_ins = "INSERT INTO robots (nev, tipus, ero)
                             VALUES ('" . $this->nev . "',
-                                    '" . $this->tipus . "',
-                                    '" . $this->ero . "'";
+                                    " . $this->tipus . ",
+                                    " . $this->ero . ")";
 
             if($this->getConnectionDriver()->getConnection()->query($sql_ins)) {
-                echo "</br>Új robot hozzáadva!</br>";
+                return true;
             }else{
-                echo "Error: " . $sql . "<br>" . mysqli_error($connect);
+                return false;
             } 
         }else{
             return false;
@@ -160,11 +161,16 @@ class Robots{
         if(!empty($this->azonosito)){           
             $this->setConnectionDriver(new Connection);            
             $sql_upd = "UPDATE robots
-                            SET nev = ".$this->nev."
-                                tipus = ".$this->tipus."
+                            SET nev = '".$this->nev."',
+                                tipus = ".$this->tipus.",
                                 ero = ".$this->ero."
                             WHERE azonosito = " . $this->azonosito;
-            $this->getConnectionDriver()->getConnection()->query($sql_ins);            
+
+            if($this->getConnectionDriver()->getConnection()->query($sql_upd)){
+                return true;
+            }else{
+                return false;
+            }
         }        
     }
     

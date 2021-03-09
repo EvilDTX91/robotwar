@@ -113,16 +113,16 @@ function showWinnerData(data){
     $('#winner_p').html(message);
 }
 
-function robotGetStrongerData($robot1, $robot2){
+function robotGetStrongerDataApi($robot1, $robot2){
     if($robot1 > 0 && $robot2 > 0){
         $.ajax({
-            url: 'classes/robots/api.controll.php',
+            url: 'classes/robots/api.getStrongerRobotData.php',
             type: 'POST',
             data: {
-                action: 'robot_battle',
+                robot1: $robot1,
+                robot2: $robot2
             },
-            success: function(data){
-                
+            success: function(data){                
             }
         })
     }

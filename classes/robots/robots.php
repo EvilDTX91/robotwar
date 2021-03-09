@@ -119,8 +119,10 @@ class Robots{
                             FROM robots
                             WHERE azonosito = " . $this->azonosito;
             $result = $this->getConnectionDriver()->getConnection()->query($sql_sel);
-            $res = $result->fetch_assoc();    
-
+            $res = $result->fetch_assoc();             
+                          
+            $res['tipus_nev'] = $this->getRobotTypeName($res['tipus']); 
+            
             if($res){       
                 return $res;
             }else{

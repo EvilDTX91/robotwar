@@ -151,7 +151,7 @@ function robotTypeList(){
             for (i = 0; i < obj.length; i++) {
                 option = document.createElement('option');
                 option.text = obj[i].tipus;
-                option.value = i;
+                option.value = i+1;
                 dropdown.add(option);
             } 
         }

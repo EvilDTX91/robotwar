@@ -29,20 +29,18 @@
                                     </label>
                                  </div>                           
                             </td>
-                            <td>
-                                <label class="form-check-label" for="check_{{ robot.azonosito }}">
-                                    <input type="hidden" id="nev_{{ robot.azonosito }}" value="{{ robot.nev }}">
-                                    {{ robot.nev }}
-                                </label>
+                            <td  onclick="selectRow({{ robot.azonosito }})">
+                                <input type="hidden" id="nev_{{ robot.azonosito }}" value="{{ robot.nev }}">
+                                {{ robot.nev }}
                             </td>
-                            <td>
+                            <td onclick="selectRow({{ robot.azonosito }})">
                                 <input type="hidden" id="tipus_{{ robot.azonosito }}" value="{{ robot.tipus }}">
                                 {{ robot.tipus_nev }}
                             </td>
-                            <td>
+                            <td  onclick="selectRow({{ robot.azonosito }})">
                                 {{ robot.ero }}
                             </td>   
-                            <td>
+                            <td  onclick="selectRow({{ robot.azonosito }})">
                                 {{ robot.letrehozva }}
                             </td> 
                             <td>
@@ -56,7 +54,7 @@
                 </tbody>        
             </table>
             <div class="robotAddDiv">
-                <button type="button" class="btn btn-success" onclick="robotBattle()" >Harc</button>
+                <button type="button" class="btn btn-success" onclick="robotBattle()" >Harcba küldés</button>
                 <button type="button" class="btn btn-success" onclick="robotAddOpen()" data-bs-toggle="modal" data-bs-target="#robotWarModal" data-bs-whatever="@getbootstrap">Új robot</button>
             </div>
         </div> 

@@ -113,6 +113,16 @@ function showWinnerData(data){
     $('#winner_p').html(message);
 }
 
+function selectRow(id)
+{
+    var chkbox = $('#check_' + id).is(":checked");
+    if(chkbox){
+        $('#check_' + id).prop('checked', false);
+    }else{
+        $('#check_' + id).prop('checked', true);        
+    }
+}
+
 function robotGetStrongerDataApi($robot1, $robot2){
     if($robot1 > 0 && $robot2 > 0){
         $.ajax({

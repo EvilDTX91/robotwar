@@ -1,8 +1,12 @@
+body{
+    background-color: #e6ffff!important;
+}
+
 .robot_table{
     width: 800px;
-    margin-top: 10px;
+    margin-top: 5%;
     margin-left: 25%;
-    background-color: yellow;
+    background-color: #e6ffff;
 }
 .robotAddDiv{
     text-align: center;

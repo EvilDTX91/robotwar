@@ -100,12 +100,13 @@ class Robots{
         
         $res = $result->fetch_all(MYSQLI_ASSOC);
         
-        foreach($res AS $r){
-            $r['tipus'] = $this->getRobotTypeName($r['tipus']);
+        foreach($res AS $r){                
+            $r['tipus_nev'] = $this->getRobotTypeName($r['tipus']); 
+            $data[] = $r;
         }
         
-        if(!empty($res)){
-            return $res;
+        if(!empty($data)){
+            return $data;
         }else{
             return false;
         }

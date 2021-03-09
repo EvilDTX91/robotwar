@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                     {% for robot in robotlist %}
-                        <tr id="tr_{{ robot.azonosito }}">
+                        <tr id="tr_{{ robot.azonosito }}" for="check_{{ robot.azonosito }}">
                             <td>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="check_{{ robot.azonosito }}">
@@ -26,13 +26,13 @@
                             </td>
                             <td>
                                 <label class="form-check-label" for="check_{{ robot.azonosito }}">
-                                    <input type="text" id="nev_{{ robot.azonosito }}" value="{{ robot.nev }}">
+                                    <input type="hidden" id="nev_{{ robot.azonosito }}" value="{{ robot.nev }}">
                                     {{ robot.nev }}
                                 </label>
                             </td>
                             <td>
-                                <input type="text" id="tipus_{{ robot.azonosito }}" value="{{ robot.tipus }}">
-                                {{ robot.tipus }}
+                                <input type="hidden" id="tipus_{{ robot.azonosito }}" value="{{ robot.tipus }}">
+                                {{ robot.tipus_nev }}
                             </td>
                             <td>
                                 {{ robot.ero }}
@@ -52,6 +52,7 @@
             </table>
             <div class="robotAddDiv">
                 <button type="button" class="btn btn-success" onclick="robotAddOpen()" data-bs-toggle="modal" data-bs-target="#robotWarModal" data-bs-whatever="@getbootstrap">Új robot</button>
+                <button type="button" class="btn btn-success" onclick="robotBattle()" >Harc</button>                
             </div>
             </div>  
         {% block model %}

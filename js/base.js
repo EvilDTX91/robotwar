@@ -10,9 +10,10 @@ function addRobot(){
                     action: 'robot_add'
                 },
             success: function(data){
-                var d = JSON.stringify(data);
-                $('#robotWarModal').modal('toggle');
-                alert(d);
+                var res = JSON.parse(data);
+                alert(res.message);
+                $('#robotWarModal').modal('toggle');                
+                location.reload();     
             }
     })
 }
@@ -34,9 +35,10 @@ function robotMod(id){
                     action: 'robot_mod'
                 },
             success: function(data){
-                var d = JSON.stringify(data);
+                var res = JSON.parse(data);
+                alert(res.message);
                 $('#robotWarModal').modal('toggle');
-                alert(d);
+                location.reload();   
             }
     })
 }
@@ -61,8 +63,39 @@ function robotDel(id){
                     action: 'robot_del'
                 },
             success: function(data){
-                var d = JSON.stringify(data);
-                alert(d);
+                var res = JSON.parse(data);
+                alert(res.message);
+                location.reload();   
+            }
+        })
+    }
+}
+
+function robotBattle($robot1, $robot2){
+    if($robot1 > 0 && $robot2 > 0){
+        $.ajax({
+            url: 'classes/robots/api.controll.php',
+            type: 'POST',
+            data: {
+                action: 'robot_battle',
+            },
+            success: function(data){
+                
+            }
+        })
+    }
+}
+
+function robotGetStrongerData($robot1, $robot2){
+    if($robot1 > 0 && $robot2 > 0){
+        $.ajax({
+            url: 'classes/robots/api.controll.php',
+            type: 'POST',
+            data: {
+                action: 'robot_battle',
+            },
+            success: function(data){
+                
             }
         })
     }

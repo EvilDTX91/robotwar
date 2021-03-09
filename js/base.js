@@ -18,7 +18,8 @@ function addRobot(){
     })
 }
 
-function robotAddOpen(){
+function robotAddOpen(){  
+    robotTypeList();
     $('#saveModalButton').attr('onClick', 'addRobot();');
 }
 
@@ -48,6 +49,7 @@ function robotModOpen(id){
     var type = $('#tipus_' + id).val();
     $('#recipient-name').val(name);
     $('#recipient-type').val(type);    
+    robotTypeList();
     $('select option[value="'+type+'"]').attr("selected",true);    
     $('#saveModalButton').attr('onClick', 'robotMod('+id+');');
 }
@@ -113,8 +115,7 @@ function showWinnerData(data){
     $('#winner_p').html(message);
 }
 
-function selectRow(id)
-{
+function selectRow(id){
     var chkbox = $('#check_' + id).is(":checked");
     if(chkbox){
         $('#check_' + id).prop('checked', false);
@@ -136,4 +137,23 @@ function robotGetStrongerDataApi($robot1, $robot2){
             }
         })
     }
+}
+
+function robotTypeList(){
+    $.ajax({
+        url: 'classes/robots/api.controll.php',
+        type: 'POST',
+        data: {action: 'get_robot_types'},
+        success: function(data){
+            var obj = JSON.parse(data);
+            $('#robotTypeSelect').empty();
+            var dropdown = document.getElementById('robotTypeSelect');
+            for (i = 0; i < obj.length; i++) {
+                option = document.createElement('option');
+                option.text = obj[i].tipus;
+                option.value = i;
+                dropdown.add(option);
+            } 
+        }
+    })
 }

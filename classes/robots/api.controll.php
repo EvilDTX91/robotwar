@@ -6,9 +6,23 @@ use robotwar\Settings\Connection;
 
 if(isset($_POST['action'])){
     
-    if($_POST['action'] == 'robotlist'){
+    if($_POST['action'] == 'get_robot_types'){
         $robot = new Robots();
-        $list = $robot ->getRobotList();
+        $list = $robot->getAllRobotTypes();
+        
+        if($list){
+            foreach($list AS $data){
+                $res[] = array(
+                    'tipus' => $data
+                );
+            }
+        }else{
+            $res = array(
+                    'response' => 0,
+                    'message' => 'Hiba!',
+                ); 
+        }                
+        echo json_encode($res);  
     }    
     
     if($_POST['action'] == 'robot_add'){

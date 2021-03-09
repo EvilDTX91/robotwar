@@ -93,7 +93,6 @@ function robotBattle(){
                     if(res.response == 0){
                         alert(res.message);                        
                     }else{
-                        $('.winner_robot_div').removeClass('hidden');
                         showWinnerData(res);                        
                         alert("A győztes " + res.nev + "!");
                     }
@@ -109,6 +108,7 @@ function robotBattle(){
 }
 
 function showWinnerData(data){
+    $('.winner_robot_div').removeClass('hidden');
     var message = "Győztes robot adatai:<br/><br/>Azonosító: " + data.azonosito + "<br/>Név: " + data.nev + "<br/>Típus: " + data.tipus_nev + "<br/>Erő: " + data.ero + "<br/>Létrehozva: " + data.letrehozva
     $('#winner_p').html(message);
 }

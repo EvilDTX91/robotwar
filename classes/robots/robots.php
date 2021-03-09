@@ -120,10 +120,9 @@ class Robots{
                             WHERE azonosito = " . $this->azonosito;
             $result = $this->getConnectionDriver()->getConnection()->query($sql_sel);
             $res = $result->fetch_assoc();             
-                          
-            $res['tipus_nev'] = $this->getRobotTypeName($res['tipus']); 
             
-            if($res){       
+            if($res){                              
+                $res['tipus_nev'] = $this->getRobotTypeName($res['tipus']);    
                 return $res;
             }else{
                 return false;
@@ -189,22 +188,26 @@ class Robots{
             $robot1 = $this->getRobot();
             $this->azonosito = $r2;
             $robot2 = $this->getRobot();
-
-            if($robot1['ero'] > $robot2['ero']){
-                $winner = $robot1['azonosito'];
-            }else if($robot1['ero'] < $robot2['ero']){
-                $winner = $robot2['azonosito'];
-            }else{
-                if($robot1['letrehozva'] > $robot2['letrehozva']){
-                    $winner = $robot1['azonosito'];                    
+            
+            if($robot1['ero'] > 0 && $robot2['ero'] > 0){
+                if($robot1['ero'] > $robot2['ero']){
+                    $winner = $robot1['azonosito'];
+                }else if($robot1['ero'] < $robot2['ero']){
+                    $winner = $robot2['azonosito'];
                 }else{
-                    $winner = $robot2['azonosito'];                                    
-                }
-            } 
-            if($winner > 0){
-                return $winner;
+                    if($robot1['letrehozva'] > $robot2['letrehozva']){
+                        $winner = $robot1['azonosito'];                    
+                    }else{
+                        $winner = $robot2['azonosito'];                                    
+                    }
+                } 
+                if($winner > 0){
+                    return $winner;
+                }else{
+                    return false;
+                }                
             }else{
-                return false;
+                return false;                
             }
         }       
     }

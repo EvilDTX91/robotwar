@@ -1,6 +1,11 @@
 {% extends 'base.twig' %}
 {% block content %}
     <body> 
+        <div>
+            <div class="winner_robot_div hidden" id="winner_robot_div">
+                <p class="winner_p" id="winner_p"><p>
+            </div>
+        </div>
         <div class="robot_table">
             <table class="table table-hover table-dark">
                 <thead>
@@ -15,7 +20,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                <div class="winner_robot_div"><h4 id="winner_h4">asa<h4><div>
                     {% for robot in robotlist %}
                         <tr id="tr_{{ robot.azonosito }}" for="check_{{ robot.azonosito }}">
                             <td>
@@ -52,10 +56,10 @@
                 </tbody>        
             </table>
             <div class="robotAddDiv">
+                <button type="button" class="btn btn-success" onclick="robotBattle()" >Harc</button>
                 <button type="button" class="btn btn-success" onclick="robotAddOpen()" data-bs-toggle="modal" data-bs-target="#robotWarModal" data-bs-whatever="@getbootstrap">Új robot</button>
-                <button type="button" class="btn btn-success" onclick="robotBattle()" >Harc</button>                
             </div>
-            </div>  
+        </div> 
         {% block model %}
             {% include 'modules/modal.twig' %}
         {% endblock %}
